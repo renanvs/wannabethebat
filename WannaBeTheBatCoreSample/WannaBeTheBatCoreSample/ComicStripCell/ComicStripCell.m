@@ -7,6 +7,8 @@
 //
 
 #import "ComicStripCell.h"
+#import "HTMLNode.h"
+#import "HTMLParser.h"
 
 @implementation ComicStripCell
 @synthesize comicImagePath, comicTitle;
@@ -32,7 +34,8 @@
 }
 
 -(void)setComicImagePath:(NSString *)_comicImagePath{
-    comicImageView.image = [UIImage imageNamed:_comicImagePath];
+    
+    comicImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_comicImagePath] options:0 error:nil]];
 }
 
 @end

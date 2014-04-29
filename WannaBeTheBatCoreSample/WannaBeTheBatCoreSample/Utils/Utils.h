@@ -42,6 +42,7 @@
 
 + (BOOL)isStringEmpty:(NSString *)string;
 + (BOOL)isStringWithNumeric:(NSString*)string;
+-(id)initWithStringNeverNil:(NSString *)aString;
 
 @end
 

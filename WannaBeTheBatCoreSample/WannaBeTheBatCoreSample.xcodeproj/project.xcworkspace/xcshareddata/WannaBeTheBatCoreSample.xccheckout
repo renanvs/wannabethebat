@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A2D8368B-65B1-45C2-BBD9-9C879194B5AE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WannaBeTheBatCoreSample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7502FA88-B955-4264-9C1B-85A7FD2708B4</key>
+		<string>https://github.com/renanvs/wannabethebat.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>WannaBeTheBatCoreSample/WannaBeTheBatCoreSample.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7502FA88-B955-4264-9C1B-85A7FD2708B4</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/renanvs/wannabethebat.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7502FA88-B955-4264-9C1B-85A7FD2708B4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7502FA88-B955-4264-9C1B-85A7FD2708B4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>wannabethebat</string>
+		</dict>
+	</array>
+</dict>
+</plist>

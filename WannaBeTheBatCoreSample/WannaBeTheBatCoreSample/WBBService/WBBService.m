@@ -8,7 +8,9 @@
 
 #import "WBBService.h"
 #include "AFNetworking.h"
-
+#import "Utils.h"
+#import "HTMLParser.h"
+#import "HTMLNode.h"
 
 @implementation WBBService
 @synthesize authorModel;
@@ -23,7 +25,8 @@
 }
 
 -(void)getComicJson{
-    NSString *urlStr = @"http://www.wannabethebat.com/feeds/posts/default?alt=json";
+    //NSString *urlStr = @"http://www.wannabethebat.com/feeds/posts/default?alt=json";
+    NSString *urlStr = @"http://localhost/~renansilva/temp/default.json";
     
     AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
     
@@ -48,6 +51,8 @@
     [authorModel retain];
     
     comicList = [[NSArray alloc] initWithArray:[self setJsonEntryToModelList:feed[@"entry"]]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationComicListUpdated object:nil];
 
 }
 
@@ -68,23 +73,45 @@
     
     for (NSDictionary *entry in entryList) {
         ComicModel *_comicModel = [[ComicModel alloc] init];
-        _comicModel.categoryTerm = [entry[@"category"] lastObject][@"term"];
-        _comicModel.contentHTML = entry[@"content"][@"$t"];
-        _comicModel.identifier = entry[@"id"][@"$t"];
-        _comicModel.thumbURI = entry[@"media$thumbnail"][@"url"];
-        _comicModel.publishedDateStr = entry[@"published"][@"$t"];
-        _comicModel.updatedDateStr = entry[@"updated"][@"$t"];
-        _comicModel.title = entry[@"title"][@"$t"];
+        
+        NSString *category = [entry[@"category"] lastObject][@"term"];
+        _comicModel.categoryTerm = [[NSString alloc] initWithStringNeverNil:category];
+
+        NSString *contentHMTL = entry[@"content"][@"$t"];
+        _comicModel.contentHTML = [[NSString alloc] initWithStringNeverNil:contentHMTL];
+        
+        NSString *identifier = entry[@"id"][@"$t"];
+        _comicModel.identifier = [[NSString alloc] initWithStringNeverNil:identifier];
+        
+        NSString *thumbUrl = entry[@"media$thumbnail"][@"url"];
+        _comicModel.thumbURI = [[NSString alloc] initWithStringNeverNil:thumbUrl];
+        
+        NSString *publishedDate = entry[@"published"][@"$t"];
+        _comicModel.publishedDateStr = [[NSString alloc] initWithStringNeverNil:publishedDate];
+        
+        NSString *updatedDate = entry[@"updated"][@"$t"];
+        _comicModel.updatedDateStr = [[NSString alloc] initWithStringNeverNil:updatedDate];
+        
+        NSString *title = entry[@"title"][@"$t"];
+        _comicModel.title = [[NSString alloc] initWithStringNeverNil:title];
+        
+        _comicModel.imagePath = [[NSString alloc] initWithString:[self parseComicImage:_comicModel.contentHTML]];
+        
         for (id linkData in entry[@"link"]) {
             if ([linkData[@"rel"] isEqualToString:@"alternate"]) {
-                _comicModel.link = linkData[@"href"];
+                NSString *link = linkData[@"href"];
+                _comicModel.link = [[NSString alloc] initWithStringNeverNil:link];
             }
         }
-        
+        //[_comicModel retain];
         [comicModelList addObject:_comicModel];
     }
     
     return comicModelList;
+}
+
+- (NSArray*)getComicList{
+    return comicList;
 }
 
 -(id)init{
@@ -95,6 +122,26 @@
     }
     
     return self;
+}
+
+-(NSString*)parseComicImage:(NSString*)HTMLstr{
+    
+    NSError *error = nil;
+    
+    HTMLParser *parser = [[HTMLParser alloc] initWithString:HTMLstr error:&error];
+    
+    if (error) {
+        NSLog(@"error: %@",error);
+    }
+    
+    HTMLNode *node = [parser body];
+    
+    NSArray *list = [node findChildTags:@"img"];
+    HTMLNode *n =[list objectAtIndex:0];
+    NSString *imgSrc = [n getAttributeNamed:@"src"];
+    
+    
+    return imgSrc;
 }
 
 @end

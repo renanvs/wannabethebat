@@ -226,4 +226,18 @@ static id _instance;
     return status;
 }
 
+-(id)initWithStringNeverNil:(NSString *)aString{
+    self = [super init];
+    
+    if (self) {
+        if (aString == nil) {
+            return @"";
+        };
+    }
+    
+    return [[NSString alloc] initWithString:aString];
+    
+}
+
+
 @end

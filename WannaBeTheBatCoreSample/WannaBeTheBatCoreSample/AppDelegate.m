@@ -15,11 +15,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+    [WBBService sharedInstance];
     MainViewController *mainViewController = [[MainViewController alloc] init];
     self.window.rootViewController = mainViewController;
     
-    [WBBService sharedInstance];
+    
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

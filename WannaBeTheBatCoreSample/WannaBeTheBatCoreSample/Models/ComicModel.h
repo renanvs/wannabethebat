@@ -18,6 +18,7 @@
     NSString *publishedDateStr;
     NSString *updatedDateStr;
     NSString *title;
+    NSString *imagePath;
     
 }
 
@@ -29,5 +30,6 @@
 @property (nonatomic, assign) NSString *publishedDateStr;
 @property (nonatomic, assign) NSString *updatedDateStr;
 @property (nonatomic, assign) NSString *title;
+@property (nonatomic, assign) NSString *imagePath;
 
 @end

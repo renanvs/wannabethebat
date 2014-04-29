@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "ComicStripCell.h"
+#import "FullComicViewController.h"
 
 #define ComicCell @"ComicStripCell"
 
@@ -25,7 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(comicListUpdated) name:notificationComicListUpdated object:nil];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)comicListUpdated{
+    [self.comicStripTableView reloadData];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -35,18 +41,25 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:ComicCell owner:self options:nil] lastObject];
     }
     
-    cell.comicTitle = @"Teste";
-    cell.comicImagePath = @"empty.png";
+    ComicModel *comicModel = [[[WBBService sharedInstance] getComicList] objectAtIndex:indexPath.row];
+    cell.comicTitle = comicModel.title;
+    cell.comicImagePath = comicModel.imagePath;
     
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 9;
+    return [[WBBService sharedInstance] getComicList].count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 170;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ComicModel *model = [[[WBBService sharedInstance] getComicList]objectAtIndex:indexPath.row];
+    FullComicViewController *fullVC = [[FullComicViewController alloc] initWithComicModel:model];
+    [self presentViewController:fullVC animated:YES completion:nil];
 }
 
 @end

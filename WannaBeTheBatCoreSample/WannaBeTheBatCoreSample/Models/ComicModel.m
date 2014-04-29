@@ -9,6 +9,6 @@
 #import "ComicModel.h"
 
 @implementation ComicModel
-@synthesize categoryTerm, contentHTML, identifier, link, thumbURI, publishedDateStr, updatedDateStr, title;
+@synthesize categoryTerm, contentHTML, identifier, link, thumbURI, publishedDateStr, updatedDateStr, title, imagePath;
 
 @end

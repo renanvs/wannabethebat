@@ -10,6 +10,8 @@
 #import "AuthorModel.h"
 #import "ComicModel.h"
 
+#define notificationComicListUpdated @"notificationComicListUpdated"
+
 @interface WBBService : NSObject{
     NSArray *comicList;
     AuthorModel *authorModel;
@@ -18,5 +20,6 @@
 @property (assign, nonatomic) AuthorModel *authorModel;
 
 + (id) sharedInstance;
+- (NSArray*)getComicList;
 
 @end

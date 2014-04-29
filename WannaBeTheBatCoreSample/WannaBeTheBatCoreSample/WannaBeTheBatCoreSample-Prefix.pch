@@ -14,4 +14,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "Utils.h"
+    #import "WBBService.h"
+    #import "ComicModel.h"
+    #import "AuthorModel.h"
 #endif
