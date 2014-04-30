@@ -44,9 +44,8 @@
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:currentComicModel.imagePath]]]];
     [imgView setContentMode:UIViewContentModeScaleAspectFit];
     [imgView setFrame:scrollView.frame];
+    imgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [scrollView addSubview:imgView];
-    CGFloat x1 = [imgView width];
-    CGSize x2 = [imgView.image size];
     scrollView.delegate = self;
     scrollView.scrollEnabled = NO;
     scrollView.minimumZoomScale = 1;
@@ -54,13 +53,17 @@
     [scrollView setContentSize:imgView.frame.size];
 }
 
--(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
-    id x = [[scrollView subviews]lastObject];
-    return x;
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)_scrollView{
+    return [[scrollView subviews]lastObject];
 }
 
 - (void)dealloc {
     [scrollView release];
     [super dealloc];
 }
+
+-(IBAction)voltar:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

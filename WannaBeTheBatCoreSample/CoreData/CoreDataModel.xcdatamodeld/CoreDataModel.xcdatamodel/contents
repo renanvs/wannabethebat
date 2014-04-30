@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="1.0" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AuthorModel" representedClassName="AuthorModel" syncable="YES">
+        <attribute name="imageSrc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CategoryModel" representedClassName="CategoryModel" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="comics" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ComicModel" inverseName="categorie" inverseEntity="ComicModel" syncable="YES"/>
+    </entity>
+    <entity name="ComicModel" representedClassName="ComicModel" syncable="YES">
+        <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="datePublished" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateUpdated" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="htmlContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imagePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="categorie" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CategoryModel" inverseName="comics" inverseEntity="CategoryModel" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ComicModel" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="CategoryModel" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="AuthorModel" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>

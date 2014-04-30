@@ -13,9 +13,13 @@
 #define notificationComicListUpdated @"notificationComicListUpdated"
 
 @interface WBBService : NSObject{
+    NSManagedObjectContext *context;
+    
     NSArray *comicList;
     AuthorModel *authorModel;
 }
+
+@property (readonly ,strong) NSManagedObjectContext *context;
 
 @property (assign, nonatomic) AuthorModel *authorModel;
 

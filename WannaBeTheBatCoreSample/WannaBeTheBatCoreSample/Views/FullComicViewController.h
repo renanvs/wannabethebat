@@ -15,5 +15,6 @@
 }
 
 -(id)initWithComicModel:(ComicModel*)comicModel;
+-(IBAction)voltar:(id)sender;
 
 @end

@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E4AFF3C190E834D000C3C95 /* AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4AFF3B190E834D000C3C95 /* AuthorModel.m */; };
+		1E9D2E1E19107BE90069AA18 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9D2E1D19107BE90069AA18 /* CoreData.framework */; };
+		1E9D2E2219107C5B0069AA18 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D2E2019107C5B0069AA18 /* CoreDataModel.xcdatamodeld */; };
+		1E9D2E251910810F0069AA18 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D2E241910810F0069AA18 /* CategoryModel.m */; };
+		1E9D2E281910810F0069AA18 /* ComicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D2E271910810F0069AA18 /* ComicModel.m */; };
+		1E9D2E2B1910810F0069AA18 /* AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D2E2A1910810F0069AA18 /* AuthorModel.m */; };
 		1EBBD02D190FD13C0038B739 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBD016190FD13C0038B739 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		1EBBD02E190FD13C0038B739 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBD018190FD13C0038B739 /* AFHTTPRequestOperationManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		1EBBD02F190FD13C0038B739 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBD01A190FD13C0038B739 /* AFHTTPSessionManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -35,12 +39,17 @@
 		1ECF3F14190DDF2100EB02AB /* ComicStripCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1ECF3F13190DDF2100EB02AB /* ComicStripCell.xib */; };
 		1ECF3F18190DE20100EB02AB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECF3F17190DE20100EB02AB /* Utils.m */; };
 		1ECF3F1B190DE2BD00EB02AB /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECF3F1A190DE2BD00EB02AB /* empty.png */; };
-		1ECF3F1F190DE94500EB02AB /* ComicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECF3F1E190DE94500EB02AB /* ComicModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E4AFF3A190E834D000C3C95 /* AuthorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorModel.h; path = Models/AuthorModel.h; sourceTree = "<group>"; };
-		1E4AFF3B190E834D000C3C95 /* AuthorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorModel.m; path = Models/AuthorModel.m; sourceTree = "<group>"; };
+		1E9D2E1D19107BE90069AA18 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1E9D2E2119107C5B0069AA18 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		1E9D2E231910810F0069AA18 /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryModel.h; path = CoreData/CategoryModel.h; sourceTree = "<group>"; };
+		1E9D2E241910810F0069AA18 /* CategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryModel.m; path = CoreData/CategoryModel.m; sourceTree = "<group>"; };
+		1E9D2E261910810F0069AA18 /* ComicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComicModel.h; path = CoreData/ComicModel.h; sourceTree = "<group>"; };
+		1E9D2E271910810F0069AA18 /* ComicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComicModel.m; path = CoreData/ComicModel.m; sourceTree = "<group>"; };
+		1E9D2E291910810F0069AA18 /* AuthorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorModel.h; path = CoreData/AuthorModel.h; sourceTree = "<group>"; };
+		1E9D2E2A1910810F0069AA18 /* AuthorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorModel.m; path = CoreData/AuthorModel.m; sourceTree = "<group>"; };
 		1EBBD015190FD13C0038B739 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		1EBBD016190FD13C0038B739 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		1EBBD017190FD13C0038B739 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -90,8 +99,6 @@
 		1ECF3F16190DE20100EB02AB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1ECF3F17190DE20100EB02AB /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		1ECF3F1A190DE2BD00EB02AB /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty.png; sourceTree = "<group>"; };
-		1ECF3F1D190DE94500EB02AB /* ComicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComicModel.h; path = Models/ComicModel.h; sourceTree = "<group>"; };
-		1ECF3F1E190DE94500EB02AB /* ComicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComicModel.m; path = Models/ComicModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E9D2E1E19107BE90069AA18 /* CoreData.framework in Frameworks */,
 				1EBBD039190FD1C80038B739 /* libxml2.dylib in Frameworks */,
 				1ECF3ED9190DD8B000EB02AB /* CoreGraphics.framework in Frameworks */,
 				1ECF3EDB190DD8B000EB02AB /* UIKit.framework in Frameworks */,
@@ -109,6 +117,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E9D2E1F19107C350069AA18 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				1E9D2E2019107C5B0069AA18 /* CoreDataModel.xcdatamodeld */,
+				1E9D2E291910810F0069AA18 /* AuthorModel.h */,
+				1E9D2E2A1910810F0069AA18 /* AuthorModel.m */,
+				1E9D2E261910810F0069AA18 /* ComicModel.h */,
+				1E9D2E271910810F0069AA18 /* ComicModel.m */,
+				1E9D2E231910810F0069AA18 /* CategoryModel.h */,
+				1E9D2E241910810F0069AA18 /* CategoryModel.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		1EBBD014190FD13C0038B739 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +183,7 @@
 		1ECF3ECA190DD8B000EB02AB = {
 			isa = PBXGroup;
 			children = (
+				1E9D2E1F19107C350069AA18 /* CoreData */,
 				1ECF3F20190DEBCC00EB02AB /* External */,
 				1ECF3EDC190DD8B000EB02AB /* WannaBeTheBatCoreSample */,
 				1ECF3ED5190DD8B000EB02AB /* Frameworks */,
@@ -179,6 +202,7 @@
 		1ECF3ED5190DD8B000EB02AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E9D2E1D19107BE90069AA18 /* CoreData.framework */,
 				1EBBD038190FD1C80038B739 /* libxml2.dylib */,
 				1ECF3ED6190DD8B000EB02AB /* Foundation.framework */,
 				1ECF3ED8190DD8B000EB02AB /* CoreGraphics.framework */,
@@ -192,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				1EBBD03A190FD7010038B739 /* Views */,
-				1ECF3F1C190DE92A00EB02AB /* Models */,
 				1ECF3F19190DE2B600EB02AB /* images */,
 				1ECF3F15190DE20100EB02AB /* Utils */,
 				1ECF3F0E190DDEB800EB02AB /* MainViewController */,
@@ -260,17 +283,6 @@
 				1ECF3F1A190DE2BD00EB02AB /* empty.png */,
 			);
 			path = images;
-			sourceTree = "<group>";
-		};
-		1ECF3F1C190DE92A00EB02AB /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				1ECF3F1D190DE94500EB02AB /* ComicModel.h */,
-				1ECF3F1E190DE94500EB02AB /* ComicModel.m */,
-				1E4AFF3A190E834D000C3C95 /* AuthorModel.h */,
-				1E4AFF3B190E834D000C3C95 /* AuthorModel.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		1ECF3F20190DEBCC00EB02AB /* External */ = {
@@ -349,13 +361,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EBBD035190FD13C0038B739 /* AFURLSessionManager.m in Sources */,
+				1E9D2E251910810F0069AA18 /* CategoryModel.m in Sources */,
 				1EBBD032190FD13C0038B739 /* AFURLConnectionOperation.m in Sources */,
 				1EBBD02D190FD13C0038B739 /* AFHTTPRequestOperation.m in Sources */,
+				1E9D2E2B1910810F0069AA18 /* AuthorModel.m in Sources */,
 				1ECF3EE7190DD8B000EB02AB /* AppDelegate.m in Sources */,
 				1EBBD02E190FD13C0038B739 /* AFHTTPRequestOperationManager.m in Sources */,
+				1E9D2E2219107C5B0069AA18 /* CoreDataModel.xcdatamodeld in Sources */,
 				1ECF3F08190DDA7900EB02AB /* MainViewController.m in Sources */,
 				1EBBD037190FD13C0038B739 /* HTMLParser.m in Sources */,
-				1ECF3F1F190DE94500EB02AB /* ComicModel.m in Sources */,
 				1EBBD02F190FD13C0038B739 /* AFHTTPSessionManager.m in Sources */,
 				1ECF3F12190DDF0C00EB02AB /* ComicStripCell.m in Sources */,
 				1ECF3F18190DE20100EB02AB /* Utils.m in Sources */,
@@ -367,7 +381,7 @@
 				1EBBD030190FD13C0038B739 /* AFNetworkReachabilityManager.m in Sources */,
 				1EBBD03E190FD7250038B739 /* FullComicViewController.m in Sources */,
 				1EBBD034190FD13C0038B739 /* AFURLResponseSerialization.m in Sources */,
-				1E4AFF3C190E834D000C3C95 /* AuthorModel.m in Sources */,
+				1E9D2E281910810F0069AA18 /* ComicModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +529,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1E9D2E2019107C5B0069AA18 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1E9D2E2119107C5B0069AA18 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 1E9D2E2119107C5B0069AA18 /* CoreDataModel.xcdatamodel */;
+			name = CoreDataModel.xcdatamodeld;
+			path = CoreData/CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1ECF3ECB190DD8B000EB02AB /* Project object */;
 }

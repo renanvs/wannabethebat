@@ -17,4 +17,8 @@
     #import "WBBService.h"
     #import "ComicModel.h"
     #import "AuthorModel.h"
+    #import <CoreData/CoreData.h>
+    #import "AuthorModel.h"
+    #import "ComicModel.h"
+    #import "CategoryModel.h"
 #endif

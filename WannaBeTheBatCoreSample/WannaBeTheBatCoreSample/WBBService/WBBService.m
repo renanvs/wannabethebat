@@ -13,7 +13,7 @@
 #import "HTMLNode.h"
 
 @implementation WBBService
-@synthesize authorModel;
+@synthesize authorModel, context;
 
 +(id)sharedInstance{
     static WBBService *sharedInstance = nil;
@@ -23,6 +23,16 @@
     });
     return sharedInstance;
 }
+
+//-(id)init{
+//    self = [super init];
+//    
+//    if (self) {
+//        [self context];
+//    }
+//    
+//    return self;
+//}
 
 -(void)getComicJson{
     //NSString *urlStr = @"http://www.wannabethebat.com/feeds/posts/default?alt=json";
@@ -53,61 +63,96 @@
     comicList = [[NSArray alloc] initWithArray:[self setJsonEntryToModelList:feed[@"entry"]]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationComicListUpdated object:nil];
-
+    [context save:nil];
 }
 
 -(AuthorModel*)setJsonAuthorToModel:(id)jsonAuthor{
-    AuthorModel *_authorModel = [[AuthorModel alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AuthorModel" inManagedObjectContext:context];
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init]autorelease];
+    request.entity = entity;
+    NSArray *result = [context executeFetchRequest:request error:nil];
+    
+    if (result) {
+        AuthorModel *_authorModel = [result lastObject];
+        return _authorModel;
+    }
+    
+    AuthorModel *_authorModel = [(AuthorModel*)[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
     
     _authorModel.name = jsonAuthor[@"name"][@"$t"];
-    _authorModel.URI = jsonAuthor[@"uri"] [@"$t"];
+    _authorModel.url = jsonAuthor[@"uri"] [@"$t"];
     _authorModel.imageSrc = jsonAuthor[@"gd$image"] [@"src"];
     _authorModel.mail = jsonAuthor[@"email"] [@"$t"];
+    
+    [context insertObject:_authorModel];
     return _authorModel;
 }
 
 -(NSArray*)setJsonEntryToModelList:(id)jsonEntry{
+    
     NSArray *entryList = (NSArray*)jsonEntry;
     
-    NSMutableArray *comicModelList = [[NSMutableArray alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ComicModel" inManagedObjectContext:context];
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init]autorelease];
+    request.entity = entity;
+    NSArray *result = [context executeFetchRequest:request error:nil];
+    
+    NSMutableArray *comicModelList = nil;
+    
+    if (result && result.count > 0) {
+        comicModelList = [[NSMutableArray alloc] initWithArray:result];
+        return comicModelList;
+    }
+    
+    comicModelList = [[NSMutableArray alloc] init];
     
     for (NSDictionary *entry in entryList) {
-        ComicModel *_comicModel = [[ComicModel alloc] init];
+        ComicModel *_comicModel = [(ComicModel*)[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
         
-        NSString *category = [entry[@"category"] lastObject][@"term"];
-        _comicModel.categoryTerm = [[NSString alloc] initWithStringNeverNil:category];
-
-        NSString *contentHMTL = entry[@"content"][@"$t"];
-        _comicModel.contentHTML = [[NSString alloc] initWithStringNeverNil:contentHMTL];
-        
-        NSString *identifier = entry[@"id"][@"$t"];
-        _comicModel.identifier = [[NSString alloc] initWithStringNeverNil:identifier];
-        
-        NSString *thumbUrl = entry[@"media$thumbnail"][@"url"];
-        _comicModel.thumbURI = [[NSString alloc] initWithStringNeverNil:thumbUrl];
-        
-        NSString *publishedDate = entry[@"published"][@"$t"];
-        _comicModel.publishedDateStr = [[NSString alloc] initWithStringNeverNil:publishedDate];
-        
-        NSString *updatedDate = entry[@"updated"][@"$t"];
-        _comicModel.updatedDateStr = [[NSString alloc] initWithStringNeverNil:updatedDate];
-        
-        NSString *title = entry[@"title"][@"$t"];
-        _comicModel.title = [[NSString alloc] initWithStringNeverNil:title];
-        
-        _comicModel.imagePath = [[NSString alloc] initWithString:[self parseComicImage:_comicModel.contentHTML]];
+        NSString *categoryTerm = [entry[@"category"] lastObject][@"term"];
+        _comicModel.categorie = [self getOrSetCategory:categoryTerm];
+        _comicModel.htmlContent = entry[@"content"][@"$t"];
+        _comicModel.identifier = entry[@"id"][@"$t"];
+        _comicModel.thumbUrl = entry[@"media$thumbnail"][@"url"];
+        _comicModel.datePublished = entry[@"published"][@"$t"];
+        _comicModel.dateUpdated = entry[@"updated"][@"$t"];
+        _comicModel.title = entry[@"title"][@"$t"];
+        _comicModel.imagePath = [[NSString alloc] initWithString:[self parseComicImage:_comicModel.htmlContent]];
         
         for (id linkData in entry[@"link"]) {
             if ([linkData[@"rel"] isEqualToString:@"alternate"]) {
-                NSString *link = linkData[@"href"];
-                _comicModel.link = [[NSString alloc] initWithStringNeverNil:link];
+                _comicModel.url = linkData[@"href"];
             }
         }
-        //[_comicModel retain];
+        
+        [context insertObject:_comicModel];
         [comicModelList addObject:_comicModel];
+        
+        
     }
     
     return comicModelList;
+}
+
+-(CategoryModel*)getOrSetCategory:(NSString*)categoryTerm{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CategoryModel" inManagedObjectContext:context];
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init]autorelease];
+    request.entity = entity;
+    NSArray *result = [context executeFetchRequest:request error:nil];
+    
+    if (result) {
+        for (CategoryModel *categoryModel in result) {
+            if ([categoryModel.title isEqualToString:categoryTerm]) {
+                return categoryModel;
+            }
+        }
+    }
+    
+    CategoryModel *categoryModel = [(CategoryModel*)[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+    categoryModel.title = categoryTerm;
+    [context insertObject:categoryModel];
+    return categoryModel;
+    
 }
 
 - (NSArray*)getComicList{
@@ -118,6 +163,7 @@
     self = [super init];
     
     if (self) {
+        [self context];
         [self getComicJson];
     }
     
@@ -142,6 +188,56 @@
     
     
     return imgSrc;
+}
+
+
+#pragma mark - coreData
+-(void)saveContext{
+    NSError *error;
+    if (![context save:&error]) {
+        NSDictionary *informacoes = [error userInfo];
+        NSArray *multiplosError = [informacoes objectForKey:NSDetailedErrorsKey];
+        if (multiplosError) {
+            for (NSError *error in multiplosError) {
+                NSLog(@"Problema: %@", [error userInfo]);
+            }
+        }else{
+            NSLog(@"Problema: %@", informacoes);
+        }
+    }else{
+        ///
+    }
+}
+
+-(NSManagedObjectModel*)managedObjectModel{
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CoreDataModel" withExtension:@"momd"];
+    NSManagedObjectModel *managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return managedObjectModel;
+}
+
+-(NSPersistentStoreCoordinator *)coordinator{
+    NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    
+    NSURL *pastaDocuments = [self applicationDocumentsDirectory];
+    NSURL *localBancoDados = [pastaDocuments URLByAppendingPathComponent:@"ComicDataBase.sqlite"];
+    
+    [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:localBancoDados options:nil error:nil];
+    return coordinator;
+}
+
+-(NSURL*)applicationDocumentsDirectory{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+-(NSManagedObjectContext *)context{
+    if (context != nil) {
+        return context;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self coordinator];
+    context = [[NSManagedObjectContext alloc] init];
+    [context setPersistentStoreCoordinator:coordinator];
+    return context;
 }
 
 @end
