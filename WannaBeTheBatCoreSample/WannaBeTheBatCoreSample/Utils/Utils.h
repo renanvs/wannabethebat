@@ -8,6 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+#define SynthensizeSingleTon(classname) \
+static classname *shared##classname = nil; \
+\
++ (classname *)sharedInstance \
+{ \
+@synchronized(self) \
+{ \
+if (shared##classname == nil) \
+{ \
+shared##classname = [[self alloc] init]; \
+} \
+} \
+\
+return shared##classname; \
+} \
+\
+
 #define debugAlert(message) \
 [Utils debugAlert:(message)]
 
@@ -19,6 +36,9 @@
 
 #define PI 3.14159265358979 /* pi */
 #define Degrees_To_Radians(angle) (angle / 180.0 * PI)
+
+#define isPortrait() \
+[Utils isPortrait]
 
 @interface Utils : NSObject
 

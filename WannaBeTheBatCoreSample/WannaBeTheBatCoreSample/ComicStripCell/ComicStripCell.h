@@ -14,7 +14,6 @@
     
     NSString *comicTitle;
     NSString *comicImagePath;
-
 }
 
 @property (assign, nonatomic) NSString *comicTitle;

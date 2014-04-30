@@ -11,39 +11,21 @@
 #import "Utils.h"
 #import "HTMLParser.h"
 #import "HTMLNode.h"
+#import "CoreDataService.h"
 
 @implementation WBBService
-@synthesize authorModel, context;
+@synthesize authorModel;
 
-+(id)sharedInstance{
-    static WBBService *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] init];
-    });
-    return sharedInstance;
-}
-
-//-(id)init{
-//    self = [super init];
-//    
-//    if (self) {
-//        [self context];
-//    }
-//    
-//    return self;
-//}
+SynthensizeSingleTon(WBBService)
 
 -(void)getComicJson{
-    //NSString *urlStr = @"http://www.wannabethebat.com/feeds/posts/default?alt=json";
+    // @"http://www.wannabethebat.com/feeds/posts/default?alt=json";
     NSString *urlStr = @"http://localhost/~renansilva/temp/default.json";
     
     AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
-    
     operationManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operationManager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id json){
-        NSLog(@"json: %@", json);
         [self parseJsonToModels:json];
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"error: %@", [error localizedDescription]);
@@ -94,6 +76,8 @@
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ComicModel" inManagedObjectContext:context];
     NSFetchRequest *request = [[[NSFetchRequest alloc] init]autorelease];
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"datePublished" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:descriptor];
     request.entity = entity;
     NSArray *result = [context executeFetchRequest:request error:nil];
     
@@ -127,8 +111,7 @@
         
         [context insertObject:_comicModel];
         [comicModelList addObject:_comicModel];
-        
-        
+
     }
     
     return comicModelList;
@@ -163,7 +146,7 @@
     self = [super init];
     
     if (self) {
-        [self context];
+        context = [[CoreDataService sharedInstance] context];
         [self getComicJson];
     }
     
@@ -186,58 +169,7 @@
     HTMLNode *n =[list objectAtIndex:0];
     NSString *imgSrc = [n getAttributeNamed:@"src"];
     
-    
     return imgSrc;
-}
-
-
-#pragma mark - coreData
--(void)saveContext{
-    NSError *error;
-    if (![context save:&error]) {
-        NSDictionary *informacoes = [error userInfo];
-        NSArray *multiplosError = [informacoes objectForKey:NSDetailedErrorsKey];
-        if (multiplosError) {
-            for (NSError *error in multiplosError) {
-                NSLog(@"Problema: %@", [error userInfo]);
-            }
-        }else{
-            NSLog(@"Problema: %@", informacoes);
-        }
-    }else{
-        ///
-    }
-}
-
--(NSManagedObjectModel*)managedObjectModel{
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CoreDataModel" withExtension:@"momd"];
-    NSManagedObjectModel *managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return managedObjectModel;
-}
-
--(NSPersistentStoreCoordinator *)coordinator{
-    NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    
-    NSURL *pastaDocuments = [self applicationDocumentsDirectory];
-    NSURL *localBancoDados = [pastaDocuments URLByAppendingPathComponent:@"ComicDataBase.sqlite"];
-    
-    [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:localBancoDados options:nil error:nil];
-    return coordinator;
-}
-
--(NSURL*)applicationDocumentsDirectory{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-
--(NSManagedObjectContext *)context{
-    if (context != nil) {
-        return context;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self coordinator];
-    context = [[NSManagedObjectContext alloc] init];
-    [context setPersistentStoreCoordinator:coordinator];
-    return context;
 }
 
 @end

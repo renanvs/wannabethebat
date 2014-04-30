@@ -131,6 +131,21 @@ static id _instance;
 //    [UIView commitAnimations];
 //}
 
++(BOOL)isPortrait{
+    
+    UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    if(interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        return NO;
+    }
+    else if(interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        return YES;
+    }
+    return NO;
+}
+
 @end
 
 @implementation UIView (Additions)

@@ -12,6 +12,7 @@
 		1E9D2E251910810F0069AA18 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D2E241910810F0069AA18 /* CategoryModel.m */; };
 		1E9D2E281910810F0069AA18 /* ComicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D2E271910810F0069AA18 /* ComicModel.m */; };
 		1E9D2E2B1910810F0069AA18 /* AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D2E2A1910810F0069AA18 /* AuthorModel.m */; };
+		1E9D2E301910907F0069AA18 /* CoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D2E2F1910907F0069AA18 /* CoreDataService.m */; };
 		1EBBD02D190FD13C0038B739 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBD016190FD13C0038B739 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		1EBBD02E190FD13C0038B739 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBD018190FD13C0038B739 /* AFHTTPRequestOperationManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		1EBBD02F190FD13C0038B739 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBD01A190FD13C0038B739 /* AFHTTPSessionManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -50,6 +51,8 @@
 		1E9D2E271910810F0069AA18 /* ComicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComicModel.m; path = CoreData/ComicModel.m; sourceTree = "<group>"; };
 		1E9D2E291910810F0069AA18 /* AuthorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorModel.h; path = CoreData/AuthorModel.h; sourceTree = "<group>"; };
 		1E9D2E2A1910810F0069AA18 /* AuthorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorModel.m; path = CoreData/AuthorModel.m; sourceTree = "<group>"; };
+		1E9D2E2E1910907F0069AA18 /* CoreDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataService.h; path = CoreDataService/CoreDataService.h; sourceTree = "<group>"; };
+		1E9D2E2F1910907F0069AA18 /* CoreDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataService.m; path = CoreDataService/CoreDataService.m; sourceTree = "<group>"; };
 		1EBBD015190FD13C0038B739 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		1EBBD016190FD13C0038B739 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		1EBBD017190FD13C0038B739 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -131,6 +134,24 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
+		1E9D2E2C191090120069AA18 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1E9D2E2D191090300069AA18 /* CoreDataService */,
+				1ECF3F0A190DDCF100EB02AB /* WBBService */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		1E9D2E2D191090300069AA18 /* CoreDataService */ = {
+			isa = PBXGroup;
+			children = (
+				1E9D2E2E1910907F0069AA18 /* CoreDataService.h */,
+				1E9D2E2F1910907F0069AA18 /* CoreDataService.m */,
+			);
+			name = CoreDataService;
+			sourceTree = "<group>";
+		};
 		1EBBD014190FD13C0038B739 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +204,7 @@
 		1ECF3ECA190DD8B000EB02AB = {
 			isa = PBXGroup;
 			children = (
+				1E9D2E2C191090120069AA18 /* Services */,
 				1E9D2E1F19107C350069AA18 /* CoreData */,
 				1ECF3F20190DEBCC00EB02AB /* External */,
 				1ECF3EDC190DD8B000EB02AB /* WannaBeTheBatCoreSample */,
@@ -219,7 +241,6 @@
 				1ECF3F19190DE2B600EB02AB /* images */,
 				1ECF3F15190DE20100EB02AB /* Utils */,
 				1ECF3F0E190DDEB800EB02AB /* MainViewController */,
-				1ECF3F0A190DDCF100EB02AB /* Core */,
 				1ECF3EE5190DD8B000EB02AB /* AppDelegate.h */,
 				1ECF3EE6190DD8B000EB02AB /* AppDelegate.m */,
 				1ECF3EDD190DD8B000EB02AB /* Supporting Files */,
@@ -238,13 +259,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1ECF3F0A190DDCF100EB02AB /* Core */ = {
+		1ECF3F0A190DDCF100EB02AB /* WBBService */ = {
 			isa = PBXGroup;
 			children = (
 				1ECF3F0B190DDDF300EB02AB /* WBBService.h */,
 				1ECF3F0C190DDDF300EB02AB /* WBBService.m */,
 			);
-			name = Core;
+			name = WBBService;
+			path = WannaBeTheBatCoreSample;
 			sourceTree = "<group>";
 		};
 		1ECF3F0E190DDEB800EB02AB /* MainViewController */ = {
@@ -380,6 +402,7 @@
 				1EBBD036190FD13C0038B739 /* HTMLNode.m in Sources */,
 				1EBBD030190FD13C0038B739 /* AFNetworkReachabilityManager.m in Sources */,
 				1EBBD03E190FD7250038B739 /* FullComicViewController.m in Sources */,
+				1E9D2E301910907F0069AA18 /* CoreDataService.m in Sources */,
 				1EBBD034190FD13C0038B739 /* AFURLResponseSerialization.m in Sources */,
 				1E9D2E281910810F0069AA18 /* ComicModel.m in Sources */,
 			);
