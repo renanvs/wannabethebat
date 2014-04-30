@@ -21,4 +21,5 @@
     #import "AuthorModel.h"
     #import "ComicModel.h"
     #import "CategoryModel.h"
+    #import "WBBInternetService.h"
 #endif

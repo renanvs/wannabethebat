@@ -18,6 +18,19 @@
 
 SynthensizeSingleTon(WBBService)
 
+-(id)init{
+    self = [super init];
+    
+    if (self) {
+        [WBBInternetService sharedInstance];
+        context = [[CoreDataService sharedInstance] context];
+        
+        [self getComicJson];
+    }
+    
+    return self;
+}
+
 -(void)getComicJson{
     // @"http://www.wannabethebat.com/feeds/posts/default?alt=json";
     NSString *urlStr = @"http://localhost/~renansilva/temp/default.json";
@@ -140,17 +153,6 @@ SynthensizeSingleTon(WBBService)
 
 - (NSArray*)getComicList{
     return comicList;
-}
-
--(id)init{
-    self = [super init];
-    
-    if (self) {
-        context = [[CoreDataService sharedInstance] context];
-        [self getComicJson];
-    }
-    
-    return self;
 }
 
 -(NSString*)parseComicImage:(NSString*)HTMLstr{
