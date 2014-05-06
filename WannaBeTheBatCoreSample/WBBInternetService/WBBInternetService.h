@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
 
+#define internetOff @"internetOff"
+#define internetMobile @"internetMobile"
+#define internetWifi @"internetWifi"
+
 @interface WBBInternetService : NSObject{
     Reachability *reach;
     BOOL hasInternet;

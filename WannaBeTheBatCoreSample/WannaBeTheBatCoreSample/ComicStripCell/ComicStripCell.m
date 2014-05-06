@@ -11,7 +11,7 @@
 #import "HTMLParser.h"
 
 @implementation ComicStripCell
-@synthesize comicImagePath, comicTitle;
+@synthesize model;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,13 +29,10 @@
     // Configure the view for the selected state
 }
 
--(void)setComicTitle:(NSString *)_comicTitle{
-    comicTitleLabel.text = _comicTitle;
-}
-
--(void)setComicImagePath:(NSString *)_comicImagePath{
+-(void)setModel:(ComicModel *)_model{
     
-    comicImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_comicImagePath] options:0 error:nil]];
+    comicImageView.image = [[WBBService sharedInstance] getThumbImageWithComicModel:_model];
+    comicTitleLabel.text = _model.title;
 }
 
 @end

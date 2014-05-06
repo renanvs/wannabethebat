@@ -22,10 +22,10 @@ SynthensizeSingleTon(CoreDataService)
         NSArray *multiplosError = [informacoes objectForKey:NSDetailedErrorsKey];
         if (multiplosError) {
             for (NSError *error in multiplosError) {
-                NSLog(@"Problema: %@", [error userInfo]);
+                NSLog(@"error: %@", [error userInfo]);
             }
         }else{
-            NSLog(@"Problema: %@", informacoes);
+            NSLog(@"error: %@", informacoes);
         }
     }else{
         ///

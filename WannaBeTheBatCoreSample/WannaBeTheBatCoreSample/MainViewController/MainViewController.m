@@ -42,8 +42,7 @@
     }
     
     ComicModel *comicModel = [[[WBBService sharedInstance] getComicList] objectAtIndex:indexPath.row];
-    cell.comicTitle = comicModel.title;
-    cell.comicImagePath = comicModel.imagePath;
+    cell.model = comicModel;
     
     return cell;
 }

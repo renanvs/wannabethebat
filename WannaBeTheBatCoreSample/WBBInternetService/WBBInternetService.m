@@ -34,14 +34,17 @@ SynthensizeSingleTon(WBBInternetService)
         hasInternet = NO;
         isWifiNetwork = NO;
         isMobileNetwork = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:internetOff object:nil];
     }else if(status == ReachableViaWWAN){
         hasInternet = YES;
         isWifiNetwork = NO;
         isMobileNetwork = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:internetMobile object:nil];
     }else{
         hasInternet = YES;
         isWifiNetwork = YES;
         isMobileNetwork = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:internetWifi object:nil];
     }
 }
 

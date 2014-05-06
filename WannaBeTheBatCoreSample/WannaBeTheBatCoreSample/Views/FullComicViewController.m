@@ -26,7 +26,10 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:currentComicModel.imagePath]]]];
+    UIImage *image = [[WBBService sharedInstance] getComicImageWithComicModel:currentComicModel];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
+    
+//    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:currentComicModel.imagePath]]]];
     [imgView setContentMode:UIViewContentModeScaleAspectFit];
     [imgView setFrame:scrollView.frame];
     imgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

@@ -62,7 +62,9 @@ return shared##classname; \
 
 + (BOOL)isStringEmpty:(NSString *)string;
 + (BOOL)isStringWithNumeric:(NSString*)string;
--(id)initWithStringNeverNil:(NSString *)aString;
+- (id)initWithStringNeverNil:(NSString *)aString;
++ (NSString*)encodeToBase64:(NSString*)value;
++ (NSString*)decodeFromBase64:(NSString*)value;
 
 @end
 

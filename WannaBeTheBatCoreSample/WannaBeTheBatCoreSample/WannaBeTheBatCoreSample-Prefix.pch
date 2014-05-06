@@ -6,20 +6,21 @@
 
 #import <Availability.h>
 
+
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."
 #endif
 
 #ifdef __OBJC__
+    #import "ComicModel.h"
+    #import "AuthorModel.h"
+    #import "CategoryModel.h"
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "Utils.h"
     #import "WBBService.h"
-    #import "ComicModel.h"
-    #import "AuthorModel.h"
     #import <CoreData/CoreData.h>
-    #import "AuthorModel.h"
-    #import "ComicModel.h"
-    #import "CategoryModel.h"
     #import "WBBInternetService.h"
+
+
 #endif

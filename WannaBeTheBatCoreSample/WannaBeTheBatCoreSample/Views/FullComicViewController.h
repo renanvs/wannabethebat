@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ComicModel.h"
 
 @interface FullComicViewController : UIViewController<UIScrollViewDelegate>{
     ComicModel *currentComicModel;

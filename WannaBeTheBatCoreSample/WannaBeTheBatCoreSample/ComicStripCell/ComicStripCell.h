@@ -12,11 +12,9 @@
     IBOutlet UILabel *comicTitleLabel;
     IBOutlet UIImageView *comicImageView;
     
-    NSString *comicTitle;
-    NSString *comicImagePath;
+    ComicModel *model;
 }
 
-@property (assign, nonatomic) NSString *comicTitle;
-@property (assign, nonatomic) NSString *comicImagePath;
+@property (assign, nonatomic) ComicModel *model;
 
 @end

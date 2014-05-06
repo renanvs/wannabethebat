@@ -11,9 +11,9 @@
         <relationship name="comics" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ComicModel" inverseName="categorie" inverseEntity="ComicModel" syncable="YES"/>
     </entity>
     <entity name="ComicModel" representedClassName="ComicModel" syncable="YES">
-        <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="datePublished" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateUpdated" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="downloaded" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="htmlContent" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imagePath" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,8 +23,8 @@
         <relationship name="categorie" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CategoryModel" inverseName="comics" inverseEntity="CategoryModel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ComicModel" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="CategoryModel" positionX="0" positionY="0" width="0" height="0"/>
         <element name="AuthorModel" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="CategoryModel" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ComicModel" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AuthorModel.h"
-#import "ComicModel.h"
+#import "WBBDatabaseService.h"
 
 #define notificationComicListUpdated @"notificationComicListUpdated"
 
 @interface WBBService : NSObject{
     NSArray *comicList;
     AuthorModel *authorModel;
+    BOOL waitingForInternet;
     NSManagedObjectContext *context;
 }
 
@@ -22,5 +22,8 @@
 
 + (id) sharedInstance;
 - (NSArray*)getComicList;
+- (UIImage*)getThumbImageWithComicModel:(ComicModel*)model;
+- (UIImage*)getComicImageWithComicModel:(ComicModel*)model;
+
 
 @end

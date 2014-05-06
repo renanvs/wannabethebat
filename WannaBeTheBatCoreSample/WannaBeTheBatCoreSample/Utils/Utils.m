@@ -251,8 +251,20 @@ static id _instance;
     }
     
     return [[NSString alloc] initWithString:aString];
-    
 }
+
++ (NSString*)encodeToBase64:(NSString*)value{
+    NSData *data = [value dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *encoded = [data base64EncodedStringWithOptions:0];
+    
+    return encoded;
+}
++ (NSString*)decodeFromBase64:(NSString*)value;{
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:value options:0];
+    NSString *decoded = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return decoded;
+}
+
 
 
 @end
