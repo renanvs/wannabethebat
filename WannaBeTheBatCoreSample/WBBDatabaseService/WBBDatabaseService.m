@@ -41,9 +41,9 @@ SynthensizeSingleTon(WBBDatabaseService)
 }
 
 -(BOOL)hasContentInDatabase{
-    AuthorModel *author = [self getAuthor];
+    //AuthorModel *author = [self getAuthor];
     
-    if ([self hasComicContentInDatabase] && author) {
+    if ([self hasComicContentInDatabase]) {
         return YES;
     }else{
         return NO;

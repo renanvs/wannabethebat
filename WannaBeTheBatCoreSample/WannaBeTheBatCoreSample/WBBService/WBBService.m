@@ -40,7 +40,7 @@ SynthensizeSingleTon(WBBService)
 -(void)startLoadContents{
     BOOL hasInternet = [[WBBInternetService sharedInstance] hasInternet];
     
-    if (YES) {
+    if (hasInternet) {
         [self getComicJson];
     }else if([[WBBDatabaseService sharedInstance]hasContentInDatabase]){
         [self loadContentInDatabase];
@@ -62,8 +62,8 @@ SynthensizeSingleTon(WBBService)
 }
 
 -(void)getComicJson{
-    // @"http://www.wannabethebat.com/feeds/posts/default?alt=json";
-    NSString *urlStr = @"http://localhost/~renansilva/temp/default.json";
+    NSString *urlStr = @"http://www.wannabethebat.com/feeds/posts/default?alt=json";
+    //NSString *urlStr = @"http://localhost/~renansilva/temp/default.json";
     
     AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
     operationManager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -143,7 +143,7 @@ SynthensizeSingleTon(WBBService)
             [comicModelToDownload addObject:_comicModel];
             [comicModelList addObject:_comicModel];
         }
-        NSLog(@"All Contents geted from database");
+        NSLog(@"All Contents geted from json");
     }
     
     [self downloadContentsWithList:comicModelToDownload];
@@ -248,8 +248,8 @@ SynthensizeSingleTon(WBBService)
     NSString *imgSrc = [n getAttributeNamed:@"src"];
     
     ///temp
-    NSString *lastPath = [imgSrc lastPathComponent];
-    imgSrc = [NSString stringWithFormat:@"http://localhost/~renansilva/temp/image/%@",lastPath];
+    ////NSString *lastPath = [imgSrc lastPathComponent];
+    ////imgSrc = [NSString stringWithFormat:@"http://localhost/~renansilva/temp/image/%@",lastPath];
     imgSrc = [imgSrc stringByReplacingOccurrencesOfString:@"+" withString:@"%20"];
     ///
     

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSData+Base64.h"
 
 #define SynthensizeSingleTon(classname) \
 static classname *shared##classname = nil; \

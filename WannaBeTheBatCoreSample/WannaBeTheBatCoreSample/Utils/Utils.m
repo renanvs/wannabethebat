@@ -255,7 +255,8 @@ static id _instance;
 
 + (NSString*)encodeToBase64:(NSString*)value{
     NSData *data = [value dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *encoded = [data base64EncodedStringWithOptions:0];
+    //NSString *encoded = [data base64EncodedStringWithOptions:0];
+    NSString *encoded = [data base64EncodedString];
     
     return encoded;
 }
