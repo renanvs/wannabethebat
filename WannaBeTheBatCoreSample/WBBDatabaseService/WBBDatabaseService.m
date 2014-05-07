@@ -73,4 +73,8 @@ SynthensizeSingleTon(WBBDatabaseService)
     return nil;
 }
 
+-(void)removeModelFromCoreData:(ComicModel*)comicModel{
+    [context deleteObject:comicModel];
+}
+
 @end

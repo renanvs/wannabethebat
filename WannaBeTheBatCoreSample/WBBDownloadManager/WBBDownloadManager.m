@@ -93,6 +93,16 @@ SynthensizeSingleTon(WBBDownloadManager)
     }
 }
 
+-(void)removeComicList:(NSArray*)list{
+    for (ComicModel *comicModel in list) {
+        NSString *encoded = [NSString encodeToBase64:comicModel.identifier];
+        NSString *directoryToDownlaod = [NSString stringWithFormat:@"%@/%@",[self getDocumentDirectory],encoded];
+        
+        [self removeDirectoryAtPath:directoryToDownlaod];
+        [[WBBDatabaseService sharedInstance] removeModelFromCoreData:comicModel];
+    }
+}
+
 -(void)downloadComicModel:(ComicModel*)comicModel toPath:(NSString*)path{
     NSString *thumbPath = [NSString stringWithFormat:@"%@/thumb/%@",path,[comicModel.thumbUrl lastPathComponent]];
     NSString *imagePath = [NSString stringWithFormat:@"%@/image/%@",path,[comicModel.imagePath lastPathComponent]];
@@ -103,16 +113,20 @@ SynthensizeSingleTon(WBBDownloadManager)
     //thumb
     url = [NSURL URLWithString:comicModel.thumbUrl];
     data = [NSData dataWithContentsOfURL:url];
+    NSString *log = [NSString stringWithFormat:@"download thumb: %@", [comicModel.identifier lastPathComponent]];
     if (data) {
         [data writeToFile:thumbPath atomically:YES];
     }
+    dwLog(log);
     
     //image
     url = [NSURL URLWithString:comicModel.imagePath];
+    log = [NSString stringWithFormat:@"download image: %@", [comicModel.identifier lastPathComponent]];
     data = [NSData dataWithContentsOfURL:url];
     if (data) {
         [data writeToFile:imagePath atomically:YES];
     }
+    dwLog(log);
 }
 
 -(void)removeDirectoryAtPath:(NSString*)path{

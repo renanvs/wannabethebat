@@ -31,7 +31,7 @@
 }
 
 -(void)comicListUpdated{
-    [self.comicStripTableView reloadData];
+    [self.comicStripTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -48,7 +48,8 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[WBBService sharedInstance] getComicList].count;
+    int value = [[WBBService sharedInstance] getComicList].count;
+    return value;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

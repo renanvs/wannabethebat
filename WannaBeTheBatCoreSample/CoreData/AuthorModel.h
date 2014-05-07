@@ -2,7 +2,7 @@
 //  AuthorModel.h
 //  WannaBeTheBatCoreSample
 //
-//  Created by renan veloso silva on 02/05/14.
+//  Created by renan veloso silva on 07/05/14.
 //  Copyright (c) 2014 renan veloso silva. All rights reserved.
 //
 

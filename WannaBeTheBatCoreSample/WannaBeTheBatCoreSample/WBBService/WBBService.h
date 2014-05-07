@@ -11,6 +11,10 @@
 
 #define notificationComicListUpdated @"notificationComicListUpdated"
 
+#define dwLog(message) \
+[WBBService dwLog:(message)]
+
+
 @interface WBBService : NSObject{
     NSArray *comicList;
     AuthorModel *authorModel;
@@ -24,6 +28,7 @@
 - (NSArray*)getComicList;
 - (UIImage*)getThumbImageWithComicModel:(ComicModel*)model;
 - (UIImage*)getComicImageWithComicModel:(ComicModel*)model;
++ (void) dwLog:(NSString*)message;
 
 
 @end

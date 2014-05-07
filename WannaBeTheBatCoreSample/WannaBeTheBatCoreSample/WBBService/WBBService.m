@@ -40,7 +40,7 @@ SynthensizeSingleTon(WBBService)
 -(void)startLoadContents{
     BOOL hasInternet = [[WBBInternetService sharedInstance] hasInternet];
     
-    if (hasInternet) {
+    if (YES) {
         [self getComicJson];
     }else if([[WBBDatabaseService sharedInstance]hasContentInDatabase]){
         [self loadContentInDatabase];
@@ -62,8 +62,8 @@ SynthensizeSingleTon(WBBService)
 }
 
 -(void)getComicJson{
-    NSString *urlStr = @"http://www.wannabethebat.com/feeds/posts/default?alt=json";
-    //NSString *urlStr = @"http://localhost/~renansilva/temp/default.json";
+    //NSString *urlStr = @"http://www.wannabethebat.com/feeds/posts/default?alt=json";
+    NSString *urlStr = @"http://localhost/~renansilva/temp/default_with_large_file.json";
     
     AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
     operationManager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -87,12 +87,14 @@ SynthensizeSingleTon(WBBService)
     [self setJsonAuthorToModel:[feed[@"author"] objectAtIndex:0]];
     [authorModel retain];
     
-    comicList = [[NSArray alloc] initWithArray:[self setJsonEntryToModelList:feed[@"entry"]]];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        comicList = [[NSArray alloc] initWithArray:[self setJsonEntryToModelList:feed[@"entry"]]];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:notificationComicListUpdated object:nil];
+        [context save:nil];
+        NSLog(@"Donwloaded Contents, send updated list notification");
+    });
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationComicListUpdated object:nil];
-    
-    [context save:nil];
-    NSLog(@"Donwloaded Contents, send updated list notification");
     //11 9 6228 6209 tim
 }
 
@@ -119,14 +121,17 @@ SynthensizeSingleTon(WBBService)
     NSArray *entryList = (NSArray*)jsonEntry;
     
     NSMutableArray *comicModelToDownload = [[NSMutableArray alloc] init];
+    NSMutableArray *comicModelToRemove = [[NSMutableArray alloc] initWithArray:[[WBBDatabaseService sharedInstance] getComicList]];
     NSMutableArray *comicModelList = [[NSMutableArray alloc] init];
     
     if ([[WBBDatabaseService sharedInstance] hasComicContentInDatabase]) {
+    //if (NO) {
         for (NSDictionary *entry in entryList) {
             NSString *identifier = entry[@"id"][@"$t"];
             ComicModel *_comicModel = [[WBBDatabaseService sharedInstance] getModelById:identifier];
             if (!_comicModel) {
                 _comicModel = [self addEntryToModel:entry HasContext:YES];
+                [comicModelToDownload addObject:_comicModel];
                 NSLog(@"New Comic: %@", _comicModel.identifier);
             }else{
                 BOOL isUpdated = [self updateModelInfo:_comicModel WithEntry:entry];
@@ -143,14 +148,18 @@ SynthensizeSingleTon(WBBService)
             [comicModelToDownload addObject:_comicModel];
             [comicModelList addObject:_comicModel];
         }
-        NSLog(@"All Contents geted from json");
+        NSLog(@"All Contents getted from json");
     }
     
+    [comicModelToRemove removeObjectsInArray:comicModelList];
+    
+    NSLog(@"%lu to remove", (unsigned long)comicModelToRemove.count);
+    NSLog(@"%lu to download", (unsigned long)comicModelToDownload.count);
+    
+    [self removeModelWithList:comicModelToRemove];
     [self downloadContentsWithList:comicModelToDownload];
     
     NSLog(@"%lu in comicList", (unsigned long)comicModelList.count);
-    NSLog(@"%lu to download", (unsigned long)comicModelToDownload.count);
-    
     return comicModelList;
 }
 
@@ -210,6 +219,21 @@ SynthensizeSingleTon(WBBService)
         ![tempComicModel.title isEqualToString:model.title] ||
         ![tempComicModel.imagePath isEqualToString:model.imagePath]) {
        
+        if (![tempComicModel.htmlContent isEqualToString:model.htmlContent])
+            NSLog(@"diferente htmlc");
+        if (![tempComicModel.url isEqualToString:model.url])
+            NSLog(@"diferente url");
+        if (![tempComicModel.thumbUrl isEqualToString:model.thumbUrl])
+            NSLog(@"diferente thumurl");
+        if (![tempComicModel.dateUpdated isEqualToString:model.dateUpdated])
+            NSLog(@"diferente dateUpt");
+        if (![tempComicModel.title isEqualToString:model.title])
+            NSLog(@"diferente title");
+        if (![tempComicModel.imagePath isEqualToString:model.imagePath])
+            NSLog(@"diferente imagepath");
+            
+        
+        
         model.htmlContent      = tempComicModel.htmlContent;
         model.url              = tempComicModel.url;
         model.thumbUrl         = tempComicModel.thumbUrl;
@@ -221,6 +245,10 @@ SynthensizeSingleTon(WBBService)
     }
     
     return NO;
+}
+
+-(void)removeModelWithList:(NSArray*)listToRemove{
+    [[WBBDownloadManager sharedInstance] removeComicList:listToRemove];
 }
 
 -(void)downloadContentsWithList:(NSArray*)listToDownload{
@@ -262,6 +290,10 @@ SynthensizeSingleTon(WBBService)
 
 - (UIImage*)getComicImageWithComicModel:(ComicModel*)model{
     return [[WBBDownloadManager sharedInstance] getComicImageByModel:model];
+}
+
++ (void) dwLog:(NSString*)message{
+    NSLog(@"dwLog: %@",message);
 }
 
 @end

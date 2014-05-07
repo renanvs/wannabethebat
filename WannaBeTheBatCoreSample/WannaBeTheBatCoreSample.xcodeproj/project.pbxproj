@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E126608191404360084A5C1 /* ComicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E126607191404360084A5C1 /* ComicModel.m */; };
-		1E12660B191404370084A5C1 /* AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E12660A191404370084A5C1 /* AuthorModel.m */; };
-		1E12660E191404370084A5C1 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E12660D191404370084A5C1 /* CategoryModel.m */; };
 		1E7C0BA51912F4FB0001520C /* WBBDatabaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C0BA41912F4FB0001520C /* WBBDatabaseService.m */; };
 		1E7C0BB21913F0720001520C /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C0BB11913F0720001520C /* NSData+Base64.m */; };
 		1E9D2E1E19107BE90069AA18 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9D2E1D19107BE90069AA18 /* CoreData.framework */; };
@@ -46,15 +43,12 @@
 		1ECF3F14190DDF2100EB02AB /* ComicStripCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1ECF3F13190DDF2100EB02AB /* ComicStripCell.xib */; };
 		1ECF3F18190DE20100EB02AB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECF3F17190DE20100EB02AB /* Utils.m */; };
 		1ECF3F1B190DE2BD00EB02AB /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECF3F1A190DE2BD00EB02AB /* empty.png */; };
+		1EE070C41919DD9F00FBA118 /* ComicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE070C31919DD9F00FBA118 /* ComicModel.m */; };
+		1EE070C71919DD9F00FBA118 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE070C61919DD9F00FBA118 /* CategoryModel.m */; };
+		1EE070CA1919DD9F00FBA118 /* AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE070C91919DD9F00FBA118 /* AuthorModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E126606191404360084A5C1 /* ComicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComicModel.h; path = CoreData/ComicModel.h; sourceTree = "<group>"; };
-		1E126607191404360084A5C1 /* ComicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComicModel.m; path = CoreData/ComicModel.m; sourceTree = "<group>"; };
-		1E126609191404370084A5C1 /* AuthorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorModel.h; path = CoreData/AuthorModel.h; sourceTree = "<group>"; };
-		1E12660A191404370084A5C1 /* AuthorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorModel.m; path = CoreData/AuthorModel.m; sourceTree = "<group>"; };
-		1E12660C191404370084A5C1 /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryModel.h; path = CoreData/CategoryModel.h; sourceTree = "<group>"; };
-		1E12660D191404370084A5C1 /* CategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryModel.m; path = CoreData/CategoryModel.m; sourceTree = "<group>"; };
 		1E280880191407760002A6AA /* WannaBeTheBatCoreSample-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WannaBeTheBatCoreSample-Prefix.pch"; sourceTree = "<group>"; };
 		1E7C0BA31912F4FB0001520C /* WBBDatabaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBBDatabaseService.h; path = WBBDatabaseService/WBBDatabaseService.h; sourceTree = "<group>"; };
 		1E7C0BA41912F4FB0001520C /* WBBDatabaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBBDatabaseService.m; path = WBBDatabaseService/WBBDatabaseService.m; sourceTree = "<group>"; };
@@ -119,6 +113,12 @@
 		1ECF3F16190DE20100EB02AB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1ECF3F17190DE20100EB02AB /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		1ECF3F1A190DE2BD00EB02AB /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty.png; sourceTree = "<group>"; };
+		1EE070C21919DD9F00FBA118 /* ComicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComicModel.h; path = CoreData/ComicModel.h; sourceTree = "<group>"; };
+		1EE070C31919DD9F00FBA118 /* ComicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComicModel.m; path = CoreData/ComicModel.m; sourceTree = "<group>"; };
+		1EE070C51919DD9F00FBA118 /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryModel.h; path = CoreData/CategoryModel.h; sourceTree = "<group>"; };
+		1EE070C61919DD9F00FBA118 /* CategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryModel.m; path = CoreData/CategoryModel.m; sourceTree = "<group>"; };
+		1EE070C81919DD9F00FBA118 /* AuthorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorModel.h; path = CoreData/AuthorModel.h; sourceTree = "<group>"; };
+		1EE070C91919DD9F00FBA118 /* AuthorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorModel.m; path = CoreData/AuthorModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,12 +160,12 @@
 			isa = PBXGroup;
 			children = (
 				1E9D2E2019107C5B0069AA18 /* CoreDataModel.xcdatamodeld */,
-				1E12660C191404370084A5C1 /* CategoryModel.h */,
-				1E12660D191404370084A5C1 /* CategoryModel.m */,
-				1E126609191404370084A5C1 /* AuthorModel.h */,
-				1E12660A191404370084A5C1 /* AuthorModel.m */,
-				1E126606191404360084A5C1 /* ComicModel.h */,
-				1E126607191404360084A5C1 /* ComicModel.m */,
+				1EE070C21919DD9F00FBA118 /* ComicModel.h */,
+				1EE070C31919DD9F00FBA118 /* ComicModel.m */,
+				1EE070C51919DD9F00FBA118 /* CategoryModel.h */,
+				1EE070C61919DD9F00FBA118 /* CategoryModel.m */,
+				1EE070C81919DD9F00FBA118 /* AuthorModel.h */,
+				1EE070C91919DD9F00FBA118 /* AuthorModel.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -451,9 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E12660E191404370084A5C1 /* CategoryModel.m in Sources */,
-				1E126608191404360084A5C1 /* ComicModel.m in Sources */,
-				1E12660B191404370084A5C1 /* AuthorModel.m in Sources */,
+				1EE070C71919DD9F00FBA118 /* CategoryModel.m in Sources */,
 				1E9D2E301910907F0069AA18 /* CoreDataService.m in Sources */,
 				1EBBD035190FD13C0038B739 /* AFURLSessionManager.m in Sources */,
 				1EBBD032190FD13C0038B739 /* AFURLConnectionOperation.m in Sources */,
@@ -461,6 +459,7 @@
 				1E9D2E3A19109BED0069AA18 /* WBBInternetService.m in Sources */,
 				1E7C0BA51912F4FB0001520C /* WBBDatabaseService.m in Sources */,
 				1EBBD02D190FD13C0038B739 /* AFHTTPRequestOperation.m in Sources */,
+				1EE070CA1919DD9F00FBA118 /* AuthorModel.m in Sources */,
 				1ECF3EE7190DD8B000EB02AB /* AppDelegate.m in Sources */,
 				1EBBD02E190FD13C0038B739 /* AFHTTPRequestOperationManager.m in Sources */,
 				1E9D2E2219107C5B0069AA18 /* CoreDataModel.xcdatamodeld in Sources */,
@@ -475,6 +474,7 @@
 				1EBBD031190FD13C0038B739 /* AFSecurityPolicy.m in Sources */,
 				1ECF3F0D190DDDF300EB02AB /* WBBService.m in Sources */,
 				1EBBD033190FD13C0038B739 /* AFURLRequestSerialization.m in Sources */,
+				1EE070C41919DD9F00FBA118 /* ComicModel.m in Sources */,
 				1EBBD036190FD13C0038B739 /* HTMLNode.m in Sources */,
 				1EBBD030190FD13C0038B739 /* AFNetworkReachabilityManager.m in Sources */,
 				1EBBD03E190FD7250038B739 /* FullComicViewController.m in Sources */,

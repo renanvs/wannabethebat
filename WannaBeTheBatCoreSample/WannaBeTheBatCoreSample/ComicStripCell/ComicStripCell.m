@@ -30,7 +30,7 @@
 }
 
 -(void)setModel:(ComicModel *)_model{
-    
+    model = _model;
     comicImageView.image = [[WBBService sharedInstance] getThumbImageWithComicModel:_model];
     comicTitleLabel.text = _model.title;
 }

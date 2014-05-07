@@ -10,5 +10,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "-[MainViewController comicListUpdated]:MainViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.comicStripTableView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

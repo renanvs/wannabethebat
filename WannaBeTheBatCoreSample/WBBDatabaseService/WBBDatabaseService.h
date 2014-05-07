@@ -26,4 +26,6 @@
 -(NSArray*)getComicList;
 -(BOOL)hasComicContentInDatabase;
 -(ComicModel*)getModelById:(NSString*)identifier;
+-(void)removeModelFromCoreData:(ComicModel*)comicModel;
+
 @end

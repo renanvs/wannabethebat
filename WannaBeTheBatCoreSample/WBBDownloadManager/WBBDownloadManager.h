@@ -18,4 +18,6 @@
 -(UIImage*)getThumbImageByModel:(ComicModel*)model;
 -(UIImage*)getComicImageByModel:(ComicModel*)model;
 -(void)downloadComicList:(NSArray*)list;
+-(void)removeComicList:(NSArray*)list;
+
 @end
